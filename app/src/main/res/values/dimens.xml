@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margins -->
+    <dimen name="activity_margin">16dp</dimen>
+    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="list_item_margin">1dp</dimen>
+    <dimen name="list_image_margin">48dp</dimen>
+
+    <!-- Buttons -->
+    <dimen name="button_size">48dp</dimen>
+
+    <!-- Widths and Heights -->
+    <dimen name="step_number_display_width">120dp</dimen>
+    <dimen name="media_player_height">300dp</dimen>
+    <dimen name="widget_height">180dp</dimen>
+    <dimen name="widget_width">250dp</dimen>
+
+    <!-- Font sizes -->
+    <dimen name="textsize_xsmall">14sp</dimen>
+    <dimen name="textsize_small">16sp</dimen>
+    <dimen name="textsize_medium">18sp</dimen>
+
+    <!-- Progress Bar -->
+    <dimen name="progress_bar_size">42dp</dimen>
+
+    <!-- Cardview -->
+    <dimen name="cardview_elevation">1dp</dimen>
+
+</resources>

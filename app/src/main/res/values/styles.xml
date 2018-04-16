@@ -8,4 +8,105 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Step Details Themes-->
+    <style name="StepNavLayout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/activity_margin</item>
+        <item name="android:layout_marginBottom">@dimen/activity_margin</item>
+    </style>
+
+    <style name="StepNavButton">
+        <item name="android:layout_width">@dimen/button_size</item>
+        <item name="android:layout_height">@dimen/button_size</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="StepNumberTextView">
+        <item name="android:layout_width">@dimen/step_number_display_width</item>
+        <item name="android:layout_height">@dimen/button_size</item>
+        <item name="android:paddingLeft">@dimen/activity_margin</item>
+        <item name="android:paddingRight">@dimen/activity_margin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/colorLightGrey</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+
+    <!-- Ingredients Themes -->
+    <style name="IngredientsTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/activity_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_margin</item>
+        <item name="android:paddingRight">@dimen/activity_margin</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/textsize_xsmall</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- Recipe List Themes -->
+    <style name="EmptyListTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginBottom">@dimen/activity_margin</item>
+        <item name="android:textSize">@dimen/textsize_small</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:background">@color/colorBackground</item>
+    </style>
+
+    <style name="RecipeListIcon">
+        <item name="android:layout_width">@dimen/list_image_margin</item>
+        <item name="android:layout_height">@dimen/list_image_margin</item>
+        <item name="android:layout_marginRight">@dimen/list_image_margin</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="RecipeListText.RecipeName">
+        <item name="android:textSize">@dimen/textsize_medium</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="RecipeListText.RecipeServings">
+        <item name="android:layout_below">@id/recipe_name_tv</item>
+        <item name="android:textSize">@dimen/textsize_xsmall</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+    </style>
+
+    <!-- Progress Bar Theme -->
+    <style name="ProgressBar">
+        <item name="android:layout_width">@dimen/progress_bar_size</item>
+        <item name="android:layout_height">@dimen/progress_bar_size</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <!-- Recipe Steps Themes -->
+    <style name="StepNoMediaImageView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:padding">@dimen/activity_margin</item>
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+
+    <style name="StepDescriptionTextView">
+        <item name="android:layout_marginTop">@dimen/activity_margin</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/activity_margin</item>
+        <item name="android:lineSpacingExtra">@dimen/list_item_margin</item>
+    </style>
+
+
 </resources>

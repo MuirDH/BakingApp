@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Baking App</string>
+
+    <!-- Placeholders -->
+    <string name="step_number_placeholder">Step 1 of 10</string>
+    <string name="widget_header_placeholder">Recipe Name</string>
+    <string name="no_media_placeholder">There is no video for this step</string>
+    <string name="step_placeholder">Step Short Description</string>
+    <string name="recipe_icon_placeholder">Recipe Icon</string>
+    <string name="recipe_name_placeholder">Recipe Name</string>
+    <string name="recipe_servings_placeholder">Servings: 2</string>
+
+    <!-- Content Descriptions -->
+    <string name="previous_button">Previous</string>
+    <string name="next_button">Next</string>
+
+    <!-- Widget -->
+    <string name="choose_recipe_btn">Choose Recipe</string>
+    <string name="app_widget_text">Click here to select a recipe.
+        \\nThe ingredients of the recipe will be displayed here after the app has been launched.
+    </string>
+
+    <!-- Labels -->
+    <string name="ingredients_label">Recipe Ingredients</string>
+
+    <!-- Menu -->
+    <string name="menu_refresh">Refresh</string>
+
 </resources>

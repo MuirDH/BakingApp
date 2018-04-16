@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".activities.StepActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/StepNavLayout"
+            android:id="@+id/layout_step_nav">
+
+            <ImageButton
+                android:id="@+id/previous_btn"
+                style="@style/StepNavButton"
+                android:layout_marginEnd="@dimen/activity_margin"
+                android:src="@drawable/ic_previous"
+                android:contentDescription="@string/previous_button"/>
+
+            <TextView
+                android:id="@+id/step_number_tv"
+                tools:text="@string/step_number_placeholder"
+                style="@style/StepNumberTextView"/>
+
+            <ImageButton
+                android:id="@+id/next_btn"
+                style="@style/StepNavButton"
+                android:layout_marginStart="@dimen/activity_margin"
+                android:src="@drawable/ic_next"
+                android:contentDescription="@string/next_button"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/container_recipe_step_detail">
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</ScrollView>

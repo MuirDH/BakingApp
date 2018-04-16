@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This fragment displays recipe video and step details -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/step_detail_layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/step_description_tv"
+            tools:text="@string/step_placeholder"
+            style="@style/StepDescriptionTextView"
+            android:paddingTop="0dp"
+            android:layout_marginTop="0dp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/media_player_height"
+        android:layout_weight="1"
+        android:background="@color/colorLightGrey"
+        android:padding="@dimen/activity_margin"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:id="@+id/player_rl">
+
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/playerview_recipe_video"
+            android:background="@color/colorTextPrimary"/>
+
+        <ImageView
+            android:id="@+id/no_media_iv"
+            android:src="@drawable/logo"
+            android:contentDescription="@string/no_media_placeholder"
+            style="@style/StepNoMediaImageView"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

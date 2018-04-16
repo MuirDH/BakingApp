@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view = "http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardElevation="@dimen/cardview_elevation"
+    android:layout_marginBottom="@dimen/activity_margin"
+    android:layout_marginEnd="@dimen/activity_margin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin"
+        android:background="@color/colorListBackground">
+
+        <ImageView
+            android:id="@+id/recipe_icon_iv"
+            android:src="@drawable/ic_pie"
+            android:contentDescription="@string/recipe_icon_placeholder"
+            style="@style/RecipeListIcon"/>
+
+        <TextView
+            android:id="@+id/recipe_name_tv"
+            tools:text="@string/recipe_name_placeholder"
+            style="@style/RecipeListText.RecipeName"/>
+
+        <TextView
+            android:id="@+id/recipe_servings_tv"
+            tools:text="@string/recipe_servings_placeholder"
+            style="@style/RecipeListText.RecipeServings"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
