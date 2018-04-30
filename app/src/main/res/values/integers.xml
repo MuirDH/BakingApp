@@ -2,5 +2,5 @@
 <resources>
 
     <integer name="grid_column_count">1</integer>
-    
+
 </resources>

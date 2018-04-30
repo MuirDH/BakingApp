@@ -69,6 +69,13 @@
         <item name="android:layout_alignParentTop">true</item>
     </style>
 
+    <style name="RecipeListText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_toRightOf">@id/recipe_icon_iv</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
     <style name="RecipeListText.RecipeName">
         <item name="android:textSize">@dimen/textsize_medium</item>
         <item name="android:textColor">@color/colorTextPrimary</item>

@@ -26,4 +26,16 @@
     <!-- Menu -->
     <string name="menu_refresh">Refresh</string>
 
+    <!-- Display Strings -->
+    <string name="display_servings">Servings: %1$d</string>
+    <string name="display_no_servings">Servings: <i>unavailable</i></string>
+    <string name="display_step_id">%d\u0029\u0020\u0020%s</string>
+    <string name="display_ingredient">%1$s\u0020\u0020\u0028%2$s\u0020%3$s\u0029\n</string>
+    <string name="display_stepnum">Step %1$d of %2$d</string>
+
+    <!-- Error Messages -->
+    <string name="error_recipe_load">Error loading recipes via HTTP request [Status code = %1$d]</string>
+    <string name="error_missing_callback">%1$s must implement OnViewClickListener</string>
+    <string name="error_invalid_step">There seems to be a problem. The selected recipe step is not identified.</string>
+
 </resources>
