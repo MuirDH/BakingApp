@@ -19,6 +19,11 @@
     <string name="app_widget_text">Click here to select a recipe.
         \\nThe ingredients of the recipe will be displayed here after the app has been launched.
     </string>
+    <string name="add_widget">Add widget</string>
+    <string name="info_ingredients_saved">Return to device\'s home screen to see ingredients saved on the widget</string>
+    <string name="info_no_chosen_recipe">Please select a recipe from the options given</string>
+    <string name="alert_app_launch">The app needs to be launched first to activate the widget</string>
+
 
     <!-- Labels -->
     <string name="ingredients_label">Recipe Ingredients</string>
@@ -37,5 +42,20 @@
     <string name="error_recipe_load">Error loading recipes via HTTP request [Status code = %1$d]</string>
     <string name="error_missing_callback">%1$s must implement OnViewClickListener</string>
     <string name="error_invalid_step">There seems to be a problem. The selected recipe step is not identified.</string>
+
+    <!-- Intent Filters -->
+    <string name="intent_filter_connectivity_change">android.net.conn.CONNECTIVITY_CHANGE</string>
+    <string name="intent_filter_wifi_state_changed">android.net.wifi.WIFI_STATE_CHANGED</string>
+
+    <!-- Alert Messages -->
+    <string name="alert_connectivity_status_ok">Your device is connected to the Internet</string>
+    <string name="alert_connectivity_status_not_ok">Your device is not connected to the Internet</string>
+    <string name="alert_recipe_load_failure">Failed to load list of recipes. \nCheck if device has connectivity and try again.</string>
+
+    <!-- Recipe Types -->
+    <string name="recipe_pie">Pie</string>
+    <string name="recipe_cake">Cake</string>
+    <string name="recipe_brownie">Brownie</string>
+    <string name="recipe_cheesecake">Cheesecake</string>
 
 </resources>
