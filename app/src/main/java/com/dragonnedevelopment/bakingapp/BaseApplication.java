@@ -33,31 +33,30 @@ public class BaseApplication extends Application {
 
     /**
      * registers and unregisters the receiver based on whether the application is visible or not
+     *
      * @param isActivityVisible boolean which says if the activity is visible
      */
     public static void setReceiverStatus(boolean isActivityVisible) {
-        if (isActivityVisible) {
-            // register broadcast receiver
-            getApplicationInstance().registerReceiver(receiver, intentFilter);
-        }else {
-            // unregister broadcast receiver to prevent memory leaks
-            getApplicationInstance().unregisterReceiver(receiver);
-        }
+        // register broadcast receiver
+        // unregister broadcast receiver to prevent memory leaks
+        if (isActivityVisible) getApplicationInstance().registerReceiver(receiver, intentFilter);
+        else getApplicationInstance().unregisterReceiver(receiver);
     }
 
     /**
-     *
      * @return the applicationInstance
      */
-    private static synchronized BaseApplication getApplicationInstance(){
+    private static synchronized BaseApplication getApplicationInstance() {
         return applicationInstance;
     }
 
     /**
      * sets the connectivity listener
+     *
      * @param listener - checks for connectivity
      */
-    public static void setConnectivityListener(ConnectivityReceiver.ConnectivityReceiverListener listener){
+    public static void setConnectivityListener
+    (ConnectivityReceiver.ConnectivityReceiverListener listener) {
         ConnectivityReceiver.connectivityReceiverListener = listener;
     }
 }

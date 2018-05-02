@@ -95,12 +95,13 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     /**
      * Empty constructor
      */
-    public RecipeStepDetailFragment(){
+    public RecipeStepDetailFragment() {
 
     }
 
     /**
      * Override this method to get the context method, as the fragment is used by multiple activities
+     *
      * @param context the context method
      */
     @Override
@@ -113,8 +114,9 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null){
-           ArrayList<Recipe> recipeArrayList = getArguments().getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
+        if (getArguments() != null) {
+            ArrayList<Recipe> recipeArrayList =
+                    getArguments().getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
 
             if (recipeArrayList != null) {
                 selectedRecipe = recipeArrayList.get(0);
@@ -125,22 +127,21 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
             }
         }
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null)
             playerPosition = savedInstanceState.getLong(Config.STATE_PLAYER_POSITION);
-        }
     }
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_recipe_step_details, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_recipe_step_details, container,
+                false);
         unbinder = ButterKnife.bind(this, rootView);
 
-        if (savedInstanceState == null){
-            // create exoplayer to show recipe video
-            createMediaPlayer();
-        }
+        // create exoplayer to show recipe video
+        if (savedInstanceState == null) createMediaPlayer();
 
         // display steps description
         displayStepsData();
@@ -157,7 +158,7 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     /**
      * get the description and video for the selected step
      */
-    public void getStepDetails(){
+    public void getStepDetails() {
         selectedStep = selectedRecipe.getRecipeSteps().get(stepId);
         stepDesc = selectedStep.getStepDescription();
         videoUrl = selectedStep.getStepVideoUrl();
@@ -167,9 +168,9 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     /**
      * display the step details
      */
-    private void displayStepsData(){
+    private void displayStepsData() {
         // remove the step number from the step description (sample raw data >= 1.
-        if (stepId > 0){
+        if (stepId > 0) {
             int index = stepDesc.indexOf(". ");
             stepDesc = stepDesc.substring(index + 2);
         }
@@ -179,29 +180,26 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     /**
      * create the Exoplayer instance and attach media to it
      */
-    public void createMediaPlayer(){
-        if (!Utils.isEmptyString(videoUrl)){
+    public void createMediaPlayer() {
+        if (!Utils.isEmptyString(videoUrl)) {
             // hide the overlay default image
             ButterKnife.apply(imageViewNoMedia, Utils.VISIBILITY, View.GONE);
 
             initialiseMediaSession();
             initialisePlayer(Uri.parse(videoUrl));
 
-        }else {
+        } else {
             /*
              * The step does not have a video, so show the recipe image instead.
              * If no recipe image is found, display a default image
              */
             ButterKnife.apply(imageViewNoMedia, Utils.VISIBILITY, View.VISIBLE);
 
-            if (!Utils.isEmptyString(imageUrl)){
-                Picasso.with(context).load(imageUrl)
-                        .placeholder(recipeDefaultImage)
-                        .error(recipeDefaultImage)
-                        .into(imageViewNoMedia);
-            }else {
-                imageViewNoMedia.setImageDrawable(recipeDefaultImage);
-            }
+            if (!Utils.isEmptyString(imageUrl)) Picasso.with(context).load(imageUrl)
+                    .placeholder(recipeDefaultImage)
+                    .error(recipeDefaultImage)
+                    .into(imageViewNoMedia);
+            else imageViewNoMedia.setImageDrawable(recipeDefaultImage);
         }
     }
 
@@ -209,7 +207,7 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
      * Initialise the media session to be enabled with media buttons, transport controls, callbacks,
      * and media controller
      */
-    private void initialiseMediaSession(){
+    private void initialiseMediaSession() {
         //create a MediaSessionCompat
         mediaSession = new MediaSessionCompat(context, TAG);
 
@@ -241,12 +239,14 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
 
     /**
      * Initialise the player
+     *
      * @param mediaUri - the uri of the media to be played
      */
     private void initialisePlayer(Uri mediaUri) {
         if (exoPlayer == null) {
             // create the player instance
-            TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveTrackSelection.Factory(bandwidthMeter);
+            TrackSelection.Factory videoTrackSelectionFactory =
+                    new AdaptiveTrackSelection.Factory(bandwidthMeter);
             trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);
 
             // create the player
@@ -263,7 +263,8 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
             // create datasource instance through which media is loaded
             String userAgent = Util.getUserAgent(context, TAG);
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context, userAgent);
-            MediaSource mediaSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(mediaUri);
+            MediaSource mediaSource =
+                    new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(mediaUri);
             exoPlayer.prepare(mediaSource);
 
             exoPlayer.setPlayWhenReady(true);
@@ -274,7 +275,7 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     /**
      * Media Session Callbacks enables all external clients to control the player
      */
-    private class MediaSessionCallback extends MediaSessionCompat.Callback{
+    private class MediaSessionCallback extends MediaSessionCompat.Callback {
         @Override
         public void onPlay() {
             super.onPlay();
@@ -360,31 +361,23 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     @Override
     public void onResume() {
         super.onResume();
-        if ((Util.SDK_INT <= 23 || exoPlayer == null)) {
-            createMediaPlayer();
-        }
+        if ((Util.SDK_INT <= 23 || exoPlayer == null)) createMediaPlayer();
     }
 
     /**
      * release the player and deactivate the media session
      */
-    private void releasePlayer(){
-        if (exoPlayer != null){
+    private void releasePlayer() {
+        if (exoPlayer != null) {
             playerPosition = exoPlayer.getCurrentPosition();
-        }
 
-        if (exoPlayer != null){
             exoPlayer.stop();
             exoPlayer.release();
             exoPlayer = null;
         }
 
-        if (mediaSession != null){
-            mediaSession.setActive(false);
-        }
+        if (mediaSession != null) mediaSession.setActive(false);
 
-        if (trackSelector != null) {
-            trackSelector = null;
-        }
+        if (trackSelector != null) trackSelector = null;
     }
 }

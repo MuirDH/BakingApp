@@ -97,9 +97,35 @@ public class WidgetActivity extends AppCompatActivity {
     }
 
     /**
+     * displays the recipe options to choose from in the form of radio buttons
+     */
+    public void displayRecipeOptions() {
+        radioGroupRecipeOptions = findViewById(R.id.radiogroup_recipe_options);
+        button = findViewById(R.id.button_choose_recipe);
+        layoutParams = new RadioGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        radioButtons = new RadioButton[recipeArrayList.size()];
+
+        int i = 0;
+        for (Recipe recipe : recipeArrayList) {
+            radioButtons[i] = new RadioButton(this);
+            radioGroupRecipeOptions.addView(radioButtons[i]);
+            radioButtons[i].setText(recipe.getRecipeName());
+            radioButtons[i].setTag(recipe.getRecipeId());
+            layoutParams.setMargins(20, 20, 20, 20);
+            radioButtons[i].setLayoutParams(layoutParams);
+            radioButtons[i].setPadding(40, 0, 0, 0);
+
+            if (previousRecipeId != 0 && previousRecipeId == recipe.getRecipeId()) {
+                radioButtons[i].setChecked(true);
+            }
+        }
+    }
+
+    /**
      * processes the selected recipe ingredients to be displayed in the widget
      */
-    private void processWidgetRecipe() {
+    public void processWidgetRecipe() {
         int selectId = radioGroupRecipeOptions.getCheckedRadioButtonId();
         radioButton = findViewById(selectId);
 
@@ -142,34 +168,6 @@ public class WidgetActivity extends AppCompatActivity {
             widgetRecipe[2] = widgetDefaultText;
 
             Utils.showToastMessage(this, toast, noRecipeChosenInformation).show();
-        }
-    }
-
-    /**
-     * displays the recipe options to choose from in the form of radio buttons
-     */
-    private void displayRecipeOptions() {
-        radioGroupRecipeOptions = findViewById(R.id.radiogroup_recipe_options);
-        button = findViewById(R.id.button_choose_recipe);
-        layoutParams = new RadioGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        radioButtons = new RadioButton[recipeArrayList.size()];
-
-        int i = 0;
-        for (Recipe recipe : recipeArrayList) {
-            radioButtons[i] = new RadioButton(this);
-            radioGroupRecipeOptions.addView(radioButtons[i]);
-            radioButtons[i].setText(recipe.getRecipeName());
-            radioButtons[i].setTag(recipe.getRecipeId());
-            layoutParams.setMargins(20, 20, 20, 20);
-            radioButtons[i].setLayoutParams(layoutParams);
-            radioButtons[i].setPadding(40, 0, 0, 0);
-
-            if (previousRecipeId != 0) {
-                if (previousRecipeId == recipe.getRecipeId()) {
-                    radioButtons[i].setChecked(true);
-                }
-            }
         }
     }
 

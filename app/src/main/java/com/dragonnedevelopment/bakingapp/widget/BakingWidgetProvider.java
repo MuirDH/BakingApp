@@ -13,12 +13,12 @@ import com.dragonnedevelopment.bakingapp.utils.Config;
 
 /**
  * BakingApp Created by Muir on 01/05/2018.
- *
+ * <p>
  * Implementation of App Widget functionality
  */
 public class BakingWidgetProvider extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, String[] recipe){
+    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, String[] recipe) {
 
         // create an Intent to launch the Activity when clicked
         Intent intent = new Intent(context, WidgetActivity.class);
@@ -33,7 +33,7 @@ public class BakingWidgetProvider extends AppWidgetProvider {
             // check if a recipe ID is available. if so, update the UI
             views.setTextViewText(R.id.app_widget_header, recipe[1]);
             views.setTextViewText(R.id.app_widget_text, recipe[2]);
-        }else {
+        } else {
             // update the UI with default text if there is no recipe ID available
             views.setTextViewText(R.id.app_widget_header, "");
             views.setTextViewText(R.id.app_widget_text, context.getString(R.string.app_widget_text));
@@ -48,17 +48,17 @@ public class BakingWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        String [] recipe = new String[3];
+        String[] recipe = new String[3];
         recipe[0] = "0";
         recipe[1] = "";
         recipe[2] = context.getString(R.string.app_widget_text);
         updateBakingWidgets(context, appWidgetManager, appWidgetIds, recipe);
     }
 
-    public static void updateBakingWidgets(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds, String[] recipe) {
-        for (int appWidgetId : appWidgetIds) {
+    public static void updateBakingWidgets(Context context, AppWidgetManager appWidgetManager,
+                                           int[] appWidgetIds, String[] recipe) {
+        for (int appWidgetId : appWidgetIds)
             updateAppWidget(context, appWidgetManager, appWidgetId, recipe);
-        }
     }
 
     @Override

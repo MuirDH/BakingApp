@@ -23,11 +23,9 @@ public class RetroFitController {
 
     public static Retrofit getClient(Context context) throws NoConnectivityException {
         // if device does not have a connection, throw an exception error and exit
-        if (!Utils.hasConnectivity(context)){
-            throw new NoConnectivityException();
-        }
+        if (!Utils.hasConnectivity(context)) throw new NoConnectivityException();
 
-        if (retrofit == null){
+        if (retrofit == null) {
             // create OkHttpClient.Build object
             OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
 

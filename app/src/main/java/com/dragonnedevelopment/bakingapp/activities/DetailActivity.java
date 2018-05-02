@@ -60,7 +60,7 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
                         .addToBackStack(Config.STACK_RECIPE_DETAIL)
                         .commit();
 
-                // Create fragment instance for Step Deatils
+                // Create fragment instance for Step Details
                 RecipeStepDetailFragment recipeStepDetailFragment = new RecipeStepDetailFragment();
                 recipeBundle.putInt(Config.INTENT_KEY_SELECTED_STEP, 0);
                 recipeStepDetailFragment.setArguments(recipeBundle);

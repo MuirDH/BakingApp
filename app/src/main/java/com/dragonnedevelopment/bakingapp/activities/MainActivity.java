@@ -3,6 +3,7 @@ package com.dragonnedevelopment.bakingapp.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -30,8 +31,10 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     private RecipeListFragment recipeListFragment;
     public static ArrayList<Recipe> recipeArrayList;
 
+    @Nullable
     private SimpleIdlingResource idlingResource;
 
+    // ButterKnife bindings
     @BindView(R.id.coordinator_layout)
     CoordinatorLayout coordinatorLayout;
 
@@ -85,9 +88,10 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         }
     }
 
-    private void showSnack(boolean isConnected) {
+    public void showSnack(boolean isConnected) {
         String message;
-        message = (isConnected) ? connectivityOk : connectivityNotOk;
+        if (isConnected) message = connectivityOk;
+        else message = connectivityNotOk;
         Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
@@ -98,10 +102,10 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_action_refresh:
-                recipeListFragment.loadRecipeData();
-                return true;
+        int i = item.getItemId();
+        if (i == R.id.menu_action_refresh) {
+            recipeListFragment.loadRecipeData();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -88,17 +88,17 @@ public class Ingredient implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (ingredientQuantity == null) {
-            dest.writeByte((byte) (0x00));
-        } else {
+        if (ingredientQuantity == null) dest.writeByte((byte) (0x00));
+        else {
             dest.writeByte((byte) (0x01));
             dest.writeDouble(ingredientQuantity);
         }
 
-        if (ingredientMeasure == null) {
-            dest.writeByte((byte) (0x00));
-        } else {
+        if (ingredientMeasure != null) {
             dest.writeByte((byte) (0x01));
+
+        } else {
+            dest.writeByte((byte) (0x00));
             dest.writeString(ingredientMeasure);
         }
         dest.writeString(ingredient);

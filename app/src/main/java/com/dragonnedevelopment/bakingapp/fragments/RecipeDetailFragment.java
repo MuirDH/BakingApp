@@ -59,21 +59,12 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
 
     private OnListItemClickListener callBack;
 
-    public void setArguments(Bundle recipeBundle) {
-    }
-
-    @Override
-    public void onClick(Step step) {
-        selectedStepId = step.getStepId();
-        callBack.onItemSelected(selectedStepId);
-        stepsAdapter.setSelected(selectedStepId);
-    }
-
     // calls a method in the host activity named onItemSelected
     public interface OnListItemClickListener {
         void onItemSelected(int stepId);
     }
 
+    // override onAttach to make sure that the container activity has implemented the callback
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -95,13 +86,16 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         parentActivity = (DetailActivity) getActivity();
-        View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
+        View rootView =
+                inflater.inflate(R.layout.fragment_recipe_detail, container, false);
         unbinder = ButterKnife.bind(this, rootView);
 
         if (getArguments() != null) {
-            ArrayList<Recipe> recipes = getArguments().getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
+            ArrayList<Recipe> recipes =
+                    getArguments().getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
             selectedStepId = getArguments().getInt(Config.INTENT_KEY_SELECTED_STEP);
 
             selectedRecipe = recipes.get(0);
@@ -117,16 +111,29 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         return rootView;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    /**
+     * displays the Recipe Ingredients in a RecyclerView
+     */
+    public void displayRecipeIngredients() {
+        StringBuilder ingredientDisplayString = new StringBuilder();
+        for (Ingredient ingredient : ingredients) {
+            ingredientDisplayString.append(
+                    String.format(
+                            displayIngredient,
+                            Utils.convertStringToFirstCapital(ingredient.getIngredient()),
+                            Double.toString(ingredient.getIngredientQuantity()),
+                            ingredient.getIngredientMeasure().toLowerCase()
+                    )
+            );
+        }
+
+        textViewIngredients.setText(ingredientDisplayString.toString());
     }
 
     /**
      * display the steps of a recipe in a recycler view
      */
-    private void displayRecipeSteps() {
+    public void displayRecipeSteps() {
         // initialise the recycler view to display the steps of a recipe using a LinearLayout
         RecyclerView.LayoutManager layoutManagerSteps = new LinearLayoutManager(parentActivity);
         recyclerViewSteps.setLayoutManager(layoutManagerSteps);
@@ -143,24 +150,17 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         }
     }
 
-    /**
-     * displays the Recipe Ingredients in a RecylerView
-     */
-    private void displayRecipeIngredients() {
-        StringBuilder ingredientDisplayString = new StringBuilder();
-        for (Ingredient ingredient : ingredients) {
-            ingredientDisplayString.append(
-                    String.format(
-                            displayIngredient,
-                            Utils.convertStringToFirstCapital(ingredient.getIngredient()),
-                            Double.toString(ingredient.getIngredientQuantity()),
-                            ingredient.getIngredientMeasure().toLowerCase()
-                    )
-            );
-        }
-
-        textViewIngredients.setText(ingredientDisplayString.toString());
+    @Override
+    public void onClick(Step step) {
+        selectedStepId = step.getStepId();
+        callBack.onItemSelected(selectedStepId);
+        stepsAdapter.setSelected(selectedStepId);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 
 }

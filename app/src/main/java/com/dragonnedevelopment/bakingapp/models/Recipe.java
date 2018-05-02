@@ -106,7 +106,7 @@ public class Recipe implements Parcelable {
      *
      * @param parcel the recipe parcel containing all of the recipe information
      */
-    protected Recipe(Parcel parcel) {
+    public Recipe(Parcel parcel) {
         recipeId = parcel.readByte() == 0x00 ? null : parcel.readInt();
         recipeName = parcel.readString();
         if (parcel.readByte() == 0x01) {

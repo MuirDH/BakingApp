@@ -14,13 +14,14 @@ import com.dragonnedevelopment.bakingapp.utils.Config;
  */
 public class BakingWidgetService extends IntentService {
 
-    private static final String ACTION_UPDATE_WIDGET = "com.dragonnedevelopment.bakingapp.action.update_widget";
+    private static final String ACTION_UPDATE_WIDGET =
+            "com.dragonnedevelopment.bakingapp.action.update_widget";
 
     public BakingWidgetService() {
         super("BakingWidgetService");
     }
 
-    public static void startActionUpdateWidget(Context context, String[] recipe){
+    public static void startActionUpdateWidget(Context context, String[] recipe) {
         Intent intent = new Intent(context, BakingWidgetService.class);
         intent.setAction(ACTION_UPDATE_WIDGET);
         intent.putExtra(Config.INTENT_KEY_WIDGET_INGREDIENTS, recipe);
@@ -30,17 +31,16 @@ public class BakingWidgetService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         if (intent != null) {
-            final  String action = intent.getAction();
+            final String action = intent.getAction();
             final String[] extra = intent.getStringArrayExtra(Config.INTENT_KEY_WIDGET_INGREDIENTS);
-            if (ACTION_UPDATE_WIDGET.equals(action)){
-                handleActionUpdateWidget(extra);
-            }
+            if (ACTION_UPDATE_WIDGET.equals(action)) handleActionUpdateWidget(extra);
         }
     }
 
     private void handleActionUpdateWidget(String[] arg) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, BakingWidgetProvider.class));
+        int[] appWidgetIds = appWidgetManager
+                .getAppWidgetIds(new ComponentName(this, BakingWidgetProvider.class));
 
         // update widgets
         BakingWidgetProvider.updateBakingWidgets(this, appWidgetManager, appWidgetIds, arg);

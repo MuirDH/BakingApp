@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 /**
  * BakingApp Created by Muir on 02/05/2018.
- *
+ * <p>
  * Define the endpoints which includes details of request methods (GET, POST, etc) and parameters.
  */
 public interface RecipeInterface {

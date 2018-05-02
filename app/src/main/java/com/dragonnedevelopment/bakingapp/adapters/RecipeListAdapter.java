@@ -51,6 +51,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        // ButterKnife bindings
         @BindView(R.id.imageview_recipe_icon)
         ImageView imageViewRecipeIcon;
         @BindView(R.id.textview_recipe_name)
@@ -136,7 +137,7 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
      * @param recipeName the name of the recipe
      * @return the correct icon resource
      */
-    private int getImageResourceId(String recipeName) {
+    public int getImageResourceId(String recipeName) {
         int imageResId;
 
         if (recipeName.contains(context.getString(R.string.recipe_pie))) {

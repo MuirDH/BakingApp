@@ -39,7 +39,8 @@ import timber.log.Timber;
 /**
  * BakingApp Created by Muir on 16/04/2018.
  */
-public class RecipeListFragment extends Fragment implements RecipeListAdapter.RecipeListOnClickHandler{
+public class RecipeListFragment extends Fragment
+        implements RecipeListAdapter.RecipeListOnClickHandler {
 
     private MainActivity parentActivity;
     private RecipeListAdapter recipeListAdapter;
@@ -58,11 +59,14 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
     @BindView(R.id.textview_empty_list)
     TextView textViewEmptyList;
 
-    @BindInt(R.integer.grid_column_count) int gridColumnCount;
+    @BindInt(R.integer.grid_column_count)
+    int gridColumnCount;
 
-    @BindString(R.string.alert_recipe_load_failure) String recipeLoadFailureAlert;
+    @BindString(R.string.alert_recipe_load_failure)
+    String recipeLoadFailureAlert;
 
-    @BindString(R.string.error_recipe_load) String recipeLoadError;
+    @BindString(R.string.error_recipe_load)
+    String recipeLoadError;
 
     // Empty Constructor
     public RecipeListFragment() {
@@ -90,9 +94,7 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
         recipeListAdapter.notifyDataSetChanged();
 
         simpleIdlingResource = (SimpleIdlingResource) parentActivity.getIdlingResource();
-        if (simpleIdlingResource != null) {
-            simpleIdlingResource.setIdleState(false);
-        }
+        if (simpleIdlingResource != null) simpleIdlingResource.setIdleState(false);
 
         // load recipes data
         loadRecipeData();
@@ -120,7 +122,9 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
             progressBar.setVisibility(View.VISIBLE);
             textViewEmptyList.setVisibility(View.GONE);
 
-            RecipeInterface recipeInterface = RetroFitController.getClient(parentActivity).create(RecipeInterface.class);
+            RecipeInterface recipeInterface = RetroFitController
+                    .getClient(parentActivity)
+                    .create(RecipeInterface.class);
 
             final Call<ArrayList<Recipe>> recipeListCall = recipeInterface.getRecipe();
 
@@ -136,7 +140,7 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
                         MainActivity.recipeArrayList = recipeArrayList;
                         recipeListAdapter.setRecipeData(recipeArrayList);
                         recipeListAdapter.notifyDataSetChanged();
-                    }else {
+                    } else {
                         postDataLoad(false, recipeLoadFailureAlert);
                         Timber.e(recipeLoadError, statusCode);
                     }
@@ -148,7 +152,7 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
                     Timber.e(throwable.getMessage());
                 }
             });
-        }catch (NoConnectivityException noConnectivityException){
+        } catch (NoConnectivityException noConnectivityException) {
             postDataLoad(false, recipeLoadFailureAlert);
             Timber.e(noConnectivityException.getMessage());
         }
@@ -157,24 +161,20 @@ public class RecipeListFragment extends Fragment implements RecipeListAdapter.Re
     /**
      * Show or hide the progress bar and empty list message depending on whether or not data is
      * retrieved
+     *
      * @param isLoadSuccessful boolean which checks if the data has been retrieved and loaded
-     * @param message string which is displayed if the response is successful
+     * @param message          string which is displayed if the response is successful
      */
-    private void postDataLoad(boolean isLoadSuccessful, String message) {
-        if (progressBar.getVisibility() == View.VISIBLE) {
-            progressBar.setVisibility(View.INVISIBLE);
-        }
+    public void postDataLoad(boolean isLoadSuccessful, String message) {
+        if (progressBar.getVisibility() == View.VISIBLE) progressBar.setVisibility(View.INVISIBLE);
 
-        if (isLoadSuccessful) {
-            textViewEmptyList.setVisibility(View.GONE);
-        }else {
+        if (isLoadSuccessful) textViewEmptyList.setVisibility(View.GONE);
+        else {
             textViewEmptyList.setText(message);
             textViewEmptyList.setVisibility(View.VISIBLE);
         }
 
-        if (simpleIdlingResource != null) {
-            simpleIdlingResource.setIdleState(isLoadSuccessful);
-        }
+        if (simpleIdlingResource != null) simpleIdlingResource.setIdleState(isLoadSuccessful);
     }
 
     @Override

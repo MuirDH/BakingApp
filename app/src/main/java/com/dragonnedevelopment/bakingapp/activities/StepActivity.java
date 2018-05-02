@@ -68,7 +68,7 @@ public class StepActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(Config.STATE_SELECTED_STEP, stepId);
     }
@@ -105,7 +105,7 @@ public class StepActivity extends AppCompatActivity {
     /**
      * navigates to previous step of the selected recipe, if there is one.
      */
-    private void submitPrevious() {
+    public void submitPrevious() {
         if (stepId > 0) {
             stepId--;
             displayStepNum();
@@ -116,7 +116,7 @@ public class StepActivity extends AppCompatActivity {
     /**
      * navigates to the next step of the selected recipe, if there is one.
      */
-    private void submitNext() {
+    public void submitNext() {
         if (stepId < (stepCount - 1)) {
             stepId++;
             displayStepNum();
@@ -125,7 +125,7 @@ public class StepActivity extends AppCompatActivity {
     }
 
     // replaces fragment with new step details
-    private void displayStepFragment() {
+    public void displayStepFragment() {
         stepBundle = new Bundle();
         selectedRecipe = new ArrayList<>();
         selectedRecipe.add(recipe);
@@ -136,12 +136,14 @@ public class StepActivity extends AppCompatActivity {
         RecipeStepDetailFragment stepDetailFragment = new RecipeStepDetailFragment();
 
         stepDetailFragment.setArguments(stepBundle);
-        fragmentManager.beginTransaction().replace(R.id.container_recipe_step_detail, stepDetailFragment)
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.container_recipe_step_detail, stepDetailFragment)
                 .commit();
     }
 
     // displays the current step number
-    private void displayStepNum() {
+    public void displayStepNum() {
         textViewStepNumber.setText(String.format(displayStepNumber, stepId, (stepCount - 1)));
     }
 

@@ -47,7 +47,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
     public StepsAdapter(Context context, StepsOnClickHandler onClickHandler) {
         this.context = context;
         this.onClickHandler = onClickHandler;
-        sharedPreferences = context.getSharedPreferences(Config.PREFERENCE_KEY_RECIPE, Context.MODE_PRIVATE);
+        sharedPreferences =
+                context.getSharedPreferences(Config.PREFERENCE_KEY_RECIPE, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.apply();
     }
@@ -55,6 +56,37 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        // ButterKnife bindings
+        @BindView(R.id.rlayout_step)
+        RelativeLayout rlayoutStep;
+
+        @BindView(R.id.textview_step)
+        TextView textViewStep;
+
+        @BindColor(R.color.colorLightGrey)
+        int colourDefaultBackground;
+
+        @BindColor(R.color.colorListBackground)
+        int colourSelectedBackground;
+
+
+        public StepViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        // called when the child view is clicked
+        @Override
+        public void onClick(View view) {
+            int adapterPosition = getAdapterPosition();
+            Step step = steps.get(adapterPosition);
+            onClickHandler.onClick(step);
+        }
     }
 
     /**
@@ -119,33 +151,5 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
         notifyDataSetChanged();
     }
 
-    public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.rlayout_step)
-        RelativeLayout rlayoutStep;
-
-        @BindView(R.id.textview_step)
-        TextView textViewStep;
-
-        @BindColor(R.color.colorLightGrey)
-        int colourDefaultBackground;
-
-        @BindColor(R.color.colorListBackground)
-        int colourSelectedBackground;
-
-
-        public StepViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(this);
-        }
-
-        // called when the child view is clicked
-        @Override
-        public void onClick(View view) {
-            int adapterPosition = getAdapterPosition();
-            Step step = steps.get(adapterPosition);
-            onClickHandler.onClick(step);
-        }
-    }
 }
