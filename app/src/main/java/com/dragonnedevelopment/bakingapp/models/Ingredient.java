@@ -56,22 +56,28 @@ public class Ingredient implements Parcelable {
         this.ingredient = ingredient;
     }
 
-    /**
-     * default constructor.
-     * constructs a new {@link Ingredient} object
-     *
-     * @param parcel which contains the information the ingredient object is made up of.
-     */
-    public Ingredient(Parcel parcel) {
-        ingredientQuantity = parcel.readByte() == 0x00 ? null : parcel.readDouble();
-        ingredientMeasure = parcel.readByte() == 0x00 ? null : parcel.readString();
-        ingredient = parcel.readString();
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.ingredientQuantity);
+        dest.writeString(this.ingredientMeasure);
+        dest.writeString(this.ingredient);
+    }
+
+    protected Ingredient(Parcel in) {
+        this.ingredientQuantity = (Double) in.readValue(Double.class.getClassLoader());
+        this.ingredientMeasure = in.readString();
+        this.ingredient = in.readString();
     }
 
     public static final Creator<Ingredient> CREATOR = new Creator<Ingredient>() {
         @Override
-        public Ingredient createFromParcel(Parcel parcel) {
-            return new Ingredient(parcel);
+        public Ingredient createFromParcel(Parcel source) {
+            return new Ingredient(source);
         }
 
         @Override
@@ -80,26 +86,6 @@ public class Ingredient implements Parcelable {
         }
     };
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        if (ingredientQuantity == null) dest.writeByte((byte) (0x00));
-        else {
-            dest.writeByte((byte) (0x01));
-            dest.writeDouble(ingredientQuantity);
-        }
 
-        if (ingredientMeasure != null) {
-            dest.writeByte((byte) (0x01));
-
-        } else {
-            dest.writeByte((byte) (0x00));
-            dest.writeString(ingredientMeasure);
-        }
-        dest.writeString(ingredient);
-    }
 }
