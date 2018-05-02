@@ -72,7 +72,7 @@
     <style name="RecipeListText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_toRightOf">@id/recipe_icon_iv</item>
+        <item name="android:layout_toRightOf">@id/imageview_recipe_icon</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
@@ -83,7 +83,7 @@
     </style>
 
     <style name="RecipeListText.RecipeServings">
-        <item name="android:layout_below">@id/recipe_name_tv</item>
+        <item name="android:layout_below">@id/textview_recipe_name</item>
         <item name="android:textSize">@dimen/textsize_xsmall</item>
         <item name="android:textColor">@color/colorTextSecondary</item>
     </style>

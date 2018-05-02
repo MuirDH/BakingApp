@@ -10,9 +10,8 @@ import java.util.List;
 
 /**
  * BakingApp Created by Muir on 30/04/2018.
- *
+ * <p>
  * A {@link Recipe} object that contains details related to a single Recipe
- *
  */
 
 public class Recipe implements Parcelable {
@@ -104,6 +103,7 @@ public class Recipe implements Parcelable {
 
     /**
      * default constructor. constructs a new {@link Recipe} object
+     *
      * @param parcel the recipe parcel containing all of the recipe information
      */
     protected Recipe(Parcel parcel) {
@@ -112,13 +112,13 @@ public class Recipe implements Parcelable {
         if (parcel.readByte() == 0x01) {
             recipeIngredients = new ArrayList<>();
             parcel.readList(recipeIngredients, Ingredient.class.getClassLoader());
-        }else {
+        } else {
             recipeIngredients = null;
         }
         if (parcel.readByte() == 0x01) {
             recipeSteps = new ArrayList<>();
             parcel.readList(recipeSteps, Step.class.getClassLoader());
-        }else {
+        } else {
             recipeSteps = null;
         }
         recipeServings = parcel.readByte() == 0x00 ? null : parcel.readInt();
@@ -144,32 +144,32 @@ public class Recipe implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (recipeId == null){
+        if (recipeId == null) {
             dest.writeByte((byte) (0x00));
-        }else {
+        } else {
             dest.writeByte((byte) (0x01));
             dest.writeInt(recipeId);
         }
 
         dest.writeString(recipeName);
 
-        if (recipeIngredients == null){
+        if (recipeIngredients == null) {
             dest.writeByte((byte) (0x00));
-        }else {
+        } else {
             dest.writeByte((byte) (0x01));
             dest.writeList(recipeIngredients);
         }
 
-        if (recipeSteps == null){
+        if (recipeSteps == null) {
             dest.writeByte((byte) (0x00));
-        }else {
+        } else {
             dest.writeByte((byte) (0x01));
             dest.writeList(recipeSteps);
         }
 
         if (recipeServings == null) {
             dest.writeByte((byte) (0x00));
-        }else {
+        } else {
             dest.writeByte((byte) (0x01));
             dest.writeInt(recipeServings);
         }

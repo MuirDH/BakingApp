@@ -22,7 +22,7 @@ import butterknife.OnClick;
 /**
  * BakingApp Created by Muir on 16/04/2018.
  */
-public class StepActivity extends AppCompatActivity{
+public class StepActivity extends AppCompatActivity {
 
     private Recipe recipe;
     private int stepId;
@@ -31,15 +31,17 @@ public class StepActivity extends AppCompatActivity{
     private ArrayList<Recipe> selectedRecipe;
     private FragmentManager fragmentManager;
 
-    @BindView(R.id.previous_btn)
+    @BindView(R.id.button_previous)
     ImageButton previousButton;
 
-    @BindView(R.id.next_btn) ImageButton nextButton;
+    @BindView(R.id.button_next)
+    ImageButton nextButton;
 
-    @BindView(R.id.step_number_tv)
+    @BindView(R.id.textview_step_number)
     TextView textViewStepNumber;
 
-    @BindString(R.string.display_stepnum) String displayStepNumber;
+    @BindString(R.string.display_stepnum)
+    String displayStepNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class StepActivity extends AppCompatActivity{
             stepCount = extras.getInt(Config.INTENT_KEY_STEP_COUNT);
         }
 
-        recipe = DetailActivity.recipes.get(0);
+        recipe = DetailActivity.recipe.get(0);
         setTitle(recipe.getRecipeName());
 
         fragmentManager = getSupportFragmentManager();
@@ -61,6 +63,63 @@ public class StepActivity extends AppCompatActivity{
 
         // create fragment instance only once
         if (savedInstanceState == null) {
+            displayStepFragment();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(Config.STATE_SELECTED_STEP, stepId);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            stepId = savedInstanceState.getInt(Config.STATE_SELECTED_STEP);
+            displayStepNum();
+        } else {
+            displayStepFragment();
+        }
+    }
+
+    /**
+     * OnClick handlers for step navigation buttons
+     *
+     * @param view the previous and next buttons
+     */
+    @OnClick({R.id.button_previous, R.id.button_next})
+    public void setViewOnClickEvent(View view) {
+        switch (view.getId()) {
+            case R.id.button_previous:
+                submitPrevious();
+                break;
+
+            case R.id.button_next:
+                submitNext();
+                break;
+        }
+    }
+
+    /**
+     * navigates to previous step of the selected recipe, if there is one.
+     */
+    private void submitPrevious() {
+        if (stepId > 0) {
+            stepId--;
+            displayStepNum();
+            displayStepFragment();
+        }
+    }
+
+    /**
+     * navigates to the next step of the selected recipe, if there is one.
+     */
+    private void submitNext() {
+        if (stepId < (stepCount - 1)) {
+            stepId++;
+            displayStepNum();
             displayStepFragment();
         }
     }
@@ -85,62 +144,5 @@ public class StepActivity extends AppCompatActivity{
     private void displayStepNum() {
         textViewStepNumber.setText(String.format(displayStepNumber, stepId, (stepCount - 1)));
     }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(Config.STATE_SELECTED_STEP, stepId);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        if (savedInstanceState != null){
-            stepId = savedInstanceState.getInt(Config.STATE_SELECTED_STEP);
-            displayStepNum();
-        }else {
-            displayStepFragment();
-        }
-    }
-
-    /**
-     * OnClick handlers for step navigation buttons
-     * @param view the previous and next buttons
-     */
-    @OnClick({R.id.previous_btn, R.id.next_btn})
-    public void setViewOnClickEvent(View view){
-        switch (view.getId()){
-            case R.id.previous_btn:
-                submitPrevious();
-                break;
-
-            case R.id.next_btn:
-                submitNext();
-                break;
-        }
-    }
-
-    /**
-     * navigates to the next step of the selected recipe, if there is one.
-     */
-    private void submitNext() {
-        if (stepId < (stepCount - 1)) {
-            stepId++;
-            displayStepNum();
-            displayStepFragment();
-        }
-    }
-
-    /**
-     * navigates to previous step of the selected recipe, if there is one.
-     */
-    private void submitPrevious() {
-        if (stepId > 0){
-            stepId--;
-            displayStepNum();
-            displayStepFragment();
-        }
-    }
-
 
 }

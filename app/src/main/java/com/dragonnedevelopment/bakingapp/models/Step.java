@@ -7,21 +7,26 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * BakingApp Created by Muir on 30/04/2018.
- *
+ * <p>
  * A {@link Step} object that contains steps related to a single {@link Recipe} item.
  */
-public class Step implements Parcelable{
+public class Step implements Parcelable {
 
     /**
      * {@link Step} attributes
      * each attribute has a corresponding @SerializedName that is needed for GSON to map the JSON
      * keys with the attributes of the {@link Step} object.
      */
-    @SerializedName("id") private Integer stepId;
-    @SerializedName("shortDescription") private String stepShortDescription;
-    @SerializedName("description") private String stepDescription;
-    @SerializedName("videoURL") private String stepVideoUrl;
-    @SerializedName("thumbnailURL") private String stepThumbnailUrl;
+    @SerializedName("id")
+    private Integer stepId;
+    @SerializedName("shortDescription")
+    private String stepShortDescription;
+    @SerializedName("description")
+    private String stepDescription;
+    @SerializedName("videoURL")
+    private String stepVideoUrl;
+    @SerializedName("thumbnailURL")
+    private String stepThumbnailUrl;
 
     // This is used to identify the current step selection and to change the background colour accordingly
     private boolean isSelected;
@@ -29,7 +34,7 @@ public class Step implements Parcelable{
     /**
      * empty constructor
      */
-    public Step(){
+    public Step() {
 
     }
 
@@ -54,7 +59,7 @@ public class Step implements Parcelable{
         return stepVideoUrl;
     }
 
-    public boolean getIsSelected(){
+    public boolean getIsSelected() {
         return isSelected;
     }
 
@@ -86,6 +91,7 @@ public class Step implements Parcelable{
     /**
      * default constructor.
      * constructs a new {@link Step} object
+     *
      * @param parcel contains the information in the {@link Step} object
      */
     protected Step(Parcel parcel) {
@@ -117,7 +123,7 @@ public class Step implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         if (stepId == null) {
             dest.writeByte((byte) (0x00));
-        }else {
+        } else {
             dest.writeByte((byte) (0x01));
             dest.writeInt(stepId);
         }

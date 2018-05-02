@@ -33,7 +33,7 @@ import butterknife.Unbinder;
 /**
  * BakingApp Created by Muir on 30/04/2018.
  */
-public class RecipeDetailFragment extends Fragment implements StepsAdapter.StepsOnClickHandler{
+public class RecipeDetailFragment extends Fragment implements StepsAdapter.StepsOnClickHandler {
 
     private DetailActivity parentActivity;
     private Unbinder unbinder;
@@ -43,16 +43,19 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
     private List<Step> steps;
     public Integer selectedStepId;
 
-    @BindView(R.id.steps_rv)
+    @BindView(R.id.recyclerview_steps)
     RecyclerView recyclerViewSteps;
 
-    @BindView(R.id.ingredients_tv)
+    @BindView(R.id.textview_ingredients)
     TextView textViewIngredients;
 
-    @BindBool(R.bool.two_pane_layout) boolean isTwoPaneLayout;
+    @BindBool(R.bool.two_pane_layout)
+    boolean isTwoPaneLayout;
 
-    @BindString(R.string.display_ingredient) String displayIngredient;
-    @BindString(R.string.error_missing_callback) String errorMissingCallback;
+    @BindString(R.string.display_ingredient)
+    String displayIngredient;
+    @BindString(R.string.error_missing_callback)
+    String errorMissingCallback;
 
     private OnListItemClickListener callBack;
 
@@ -78,7 +81,7 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         // ensure that the host activity has implemented the callback interface or throw an exception
         try {
             callBack = (OnListItemClickListener) context;
-        }catch (ClassCastException e){
+        } catch (ClassCastException e) {
             throw new ClassCastException(String.format(errorMissingCallback, context.toString()));
         }
     }
@@ -86,7 +89,7 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
     /**
      * Empty constructor
      */
-    public RecipeDetailFragment(){
+    public RecipeDetailFragment() {
 
     }
 
@@ -97,10 +100,12 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
         View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
         unbinder = ButterKnife.bind(this, rootView);
 
-        if (getArguments() != null){
+        if (getArguments() != null) {
             ArrayList<Recipe> recipes = getArguments().getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
             selectedStepId = getArguments().getInt(Config.INTENT_KEY_SELECTED_STEP);
+
             selectedRecipe = recipes.get(0);
+
 
             ingredients = selectedRecipe.getRecipeIngredients();
             steps = selectedRecipe.getRecipeSteps();
@@ -133,7 +138,7 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
 
         if (selectedStepId == null) {
             stepsAdapter.setSelected(0);
-        }else {
+        } else {
             stepsAdapter.setSelected(selectedStepId);
         }
     }
@@ -143,7 +148,7 @@ public class RecipeDetailFragment extends Fragment implements StepsAdapter.Steps
      */
     private void displayRecipeIngredients() {
         StringBuilder ingredientDisplayString = new StringBuilder();
-        for (Ingredient ingredient : ingredients){
+        for (Ingredient ingredient : ingredients) {
             ingredientDisplayString.append(
                     String.format(
                             displayIngredient,

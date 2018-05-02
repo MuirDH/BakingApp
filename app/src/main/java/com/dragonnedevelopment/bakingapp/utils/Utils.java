@@ -1,5 +1,6 @@
 package com.dragonnedevelopment.bakingapp.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -33,6 +34,7 @@ public class Utils {
      * @param message the message displayed by the toast
      * @return Toast object
      */
+    @SuppressLint("ShowToast")
     public static Toast showToastMessage(Context context, Toast toast, String message) {
         if (toast != null){
             toast.cancel();
@@ -66,7 +68,10 @@ public class Utils {
      */
     public static boolean hasConnectivity(Context context) {
         final ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo networkInfo = null;
+        if (connectivityManager != null) {
+            networkInfo = connectivityManager.getActiveNetworkInfo();
+        }
         return (networkInfo != null && networkInfo.isConnected());
 
     }

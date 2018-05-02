@@ -32,7 +32,7 @@ public class WidgetActivity extends AppCompatActivity {
 
     final Context context = this;
     private RadioButton radioButton;
-    private RadioButton [] radioButtons;
+    private RadioButton[] radioButtons;
     private RadioGroup radioGroupRecipeOptions;
     private Button button;
     private AppWidgetManager appWidgetManager;
@@ -40,15 +40,19 @@ public class WidgetActivity extends AppCompatActivity {
     private int appWidgetId;
     private RadioGroup.LayoutParams layoutParams;
     public ArrayList<Recipe> recipeArrayList;
-    private String [] widgetRecipe;
+    private String[] widgetRecipe;
     int previousRecipeId;
     private List<Ingredient> ingredients;
 
     // Butterknife resource binding
-    @BindString(R.string.display_ingredient) String displayIngredient;
-    @BindString(R.string.app_widget_text) String widgetDefaultText;
-    @BindString(R.string.info_ingredients_saved) String ingredientsSavedInformation;
-    @BindString(R.string.info_no_chosen_recipe) String noRecipeChosenInformation;
+    @BindString(R.string.display_ingredient)
+    String displayIngredient;
+    @BindString(R.string.app_widget_text)
+    String widgetDefaultText;
+    @BindString(R.string.info_ingredients_saved)
+    String ingredientsSavedInformation;
+    @BindString(R.string.info_no_chosen_recipe)
+    String noRecipeChosenInformation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +136,7 @@ public class WidgetActivity extends AppCompatActivity {
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             setResult(RESULT_OK, resultValue);
             finish();
-        }else {
+        } else {
             widgetRecipe[0] = "0";
             widgetRecipe[1] = "";
             widgetRecipe[2] = widgetDefaultText;
@@ -145,8 +149,8 @@ public class WidgetActivity extends AppCompatActivity {
      * displays the recipe options to choose from in the form of radio buttons
      */
     private void displayRecipeOptions() {
-        radioGroupRecipeOptions = findViewById(R.id.recipe_options_rg);
-        button = findViewById(R.id.choose_recipe_btn);
+        radioGroupRecipeOptions = findViewById(R.id.radiogroup_recipe_options);
+        button = findViewById(R.id.button_choose_recipe);
         layoutParams = new RadioGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         radioButtons = new RadioButton[recipeArrayList.size()];
@@ -162,7 +166,7 @@ public class WidgetActivity extends AppCompatActivity {
             radioButtons[i].setPadding(40, 0, 0, 0);
 
             if (previousRecipeId != 0) {
-                if (previousRecipeId == recipe.getRecipeId()){
+                if (previousRecipeId == recipe.getRecipeId()) {
                     radioButtons[i].setChecked(true);
                 }
             }

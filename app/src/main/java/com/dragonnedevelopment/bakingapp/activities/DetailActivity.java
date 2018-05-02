@@ -22,11 +22,12 @@ import butterknife.ButterKnife;
  */
 public class DetailActivity extends AppCompatActivity implements RecipeDetailFragment.OnListItemClickListener {
 
-    public static ArrayList<Recipe> recipes;
+    public static ArrayList<Recipe> recipe;
     private Bundle recipeBundle;
     private FragmentManager fragmentManager;
 
-    @BindBool(R.bool.two_pane_layout) boolean isTwoPaneLayout;
+    @BindBool(R.bool.two_pane_layout)
+    boolean isTwoPaneLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +37,19 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
 
         if (getIntent().getExtras() != null) {
             recipeBundle = getIntent().getExtras();
-            recipes = recipeBundle.getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
+            recipe = recipeBundle.getParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE);
         }
 
         // exit early if selected recipe is null or has no name
-        if ((recipes == null) || (Utils.isEmptyString(recipes.get(0).getRecipeName()))) return;
-        setTitle(recipes.get(0).getRecipeName());
+        if ((recipe == null) || (Utils.isEmptyString(recipe.get(0).getRecipeName()))) return;
+        setTitle(recipe.get(0).getRecipeName());
 
         // create an instance of FragmentManager
         fragmentManager = getSupportFragmentManager();
 
         // only create new fragments when there is no previously saved state
-        if (savedInstanceState == null){
-            if (isTwoPaneLayout){
+        if (savedInstanceState == null) {
+            if (isTwoPaneLayout) {
                 // create fragment instance for ingredients and steps
                 RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
                 recipeBundle.putInt(Config.INTENT_KEY_SELECTED_STEP, 0);
@@ -56,9 +57,19 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
                 fragmentManager
                         .beginTransaction()
                         .replace(R.id.container_recipe_detail, recipeDetailFragment)
+                        .addToBackStack(Config.STACK_RECIPE_DETAIL)
+                        .commit();
+
+                // Create fragment instance for Step Deatils
+                RecipeStepDetailFragment recipeStepDetailFragment = new RecipeStepDetailFragment();
+                recipeBundle.putInt(Config.INTENT_KEY_SELECTED_STEP, 0);
+                recipeStepDetailFragment.setArguments(recipeBundle);
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.container_recipe_step_detail, recipeStepDetailFragment)
                         .addToBackStack(Config.STACK_RECIPE_STEP_DETAIL)
                         .commit();
-            }else {
+            } else {
                 // create fragment instance for ingredients and steps
                 RecipeDetailFragment recipeDetailFragment = new RecipeDetailFragment();
                 recipeDetailFragment.setArguments(recipeBundle);
@@ -80,11 +91,11 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
 
     @Override
     public void onItemSelected(int stepId) {
-        int stepsCount = recipes.get(0).getRecipeSteps().size();
+        int stepsCount = recipe.get(0).getRecipeSteps().size();
 
-        if (isTwoPaneLayout){
+        if (isTwoPaneLayout) {
             Bundle stepBundle = new Bundle();
-            stepBundle.putParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE, recipes);
+            stepBundle.putParcelableArrayList(Config.INTENT_KEY_SELECTED_RECIPE, recipe);
             stepBundle.putInt(Config.INTENT_KEY_SELECTED_STEP, stepId);
             stepBundle.putInt(Config.INTENT_KEY_STEP_COUNT, stepsCount);
 
@@ -101,7 +112,7 @@ public class DetailActivity extends AppCompatActivity implements RecipeDetailFra
                     .beginTransaction()
                     .replace(R.id.container_recipe_step_detail, recipeStepDetailFragment)
                     .commit();
-        }else {
+        } else {
             Intent intent = new Intent(this, StepActivity.class);
             intent.putExtra(Config.INTENT_KEY_SELECTED_STEP, stepId);
             intent.putExtra(Config.INTENT_KEY_STEP_COUNT, stepsCount);

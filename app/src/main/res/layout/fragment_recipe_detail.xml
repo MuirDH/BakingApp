@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- This fragment is for displaying recipe ingredients and steps -->
+<?xml version="1.0" encoding="utf-8"?><!-- This fragment is for displaying recipe ingredients and steps -->
 
-<ScrollView
-    xmlns:android = "http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,18 +9,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="@dimen/activity_margin">
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/ingredients_tv"
-            tools:text="@string/ingredients_label"
-            style="@style/IngredientsTextView"/>
+            android:id="@+id/textview_ingredients"
+            style="@style/IngredientsTextView"
+            tools:text="@string/ingredients_label" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_steps"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/steps_rv"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

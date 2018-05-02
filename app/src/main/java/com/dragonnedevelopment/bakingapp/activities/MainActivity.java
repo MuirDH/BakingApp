@@ -24,7 +24,7 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
+public class MainActivity extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     final Context context = this;
     private RecipeListFragment recipeListFragment;
@@ -35,8 +35,10 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
     @BindView(R.id.coordinator_layout)
     CoordinatorLayout coordinatorLayout;
 
-    @BindString(R.string.alert_connectivity_status_ok) String connectivityOk;
-    @BindString(R.string.alert_connectivity_status_not_ok) String connectivityNotOk;
+    @BindString(R.string.alert_connectivity_status_ok)
+    String connectivityOk;
+    @BindString(R.string.alert_connectivity_status_not_ok)
+    String connectivityNotOk;
 
     /**
      * Only called from test.
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        recipeListFragment =(RecipeListFragment) getFragmentManager().findFragmentById(R.id.fragment_recipe_list);
+        recipeListFragment = (RecipeListFragment) getFragmentManager().findFragmentById(R.id.fragment_recipe_list);
 
         // Get IdlingResource instance
         getIdlingResource();
@@ -89,12 +91,13 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
+    // Inflate Setting menu for recipe list
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_refresh, menu);
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_action_refresh:
                 recipeListFragment.loadRecipeData();

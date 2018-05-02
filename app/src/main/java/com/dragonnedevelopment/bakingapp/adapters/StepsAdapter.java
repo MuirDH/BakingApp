@@ -2,6 +2,7 @@ package com.dragonnedevelopment.bakingapp.adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ import butterknife.ButterKnife;
 
 /**
  * BakingApp Created by Muir on 30/04/2018.
- *
+ * <p>
  * Creates a list of recipe steps to a {@link android.support.v7.widget.RecyclerView}
  */
 public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHolder> {
@@ -43,7 +44,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
     /*
      * OnClick handler for the adapter which handles the situation when a single item is clicked
      */
-    public StepsAdapter(Context context, StepsOnClickHandler onClickHandler){
+    public StepsAdapter(Context context, StepsOnClickHandler onClickHandler) {
         this.context = context;
         this.onClickHandler = onClickHandler;
         sharedPreferences = context.getSharedPreferences(Config.PREFERENCE_KEY_RECIPE, Context.MODE_PRIVATE);
@@ -62,8 +63,9 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
      *
      * @return a new ViewHolder which holds the View for each list item
      */
+    @NonNull
     @Override
-    public StepsAdapter.StepViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public StepsAdapter.StepViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         int listItemLayoutId = R.layout.list_item_step;
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(listItemLayoutId, parent, false);
@@ -74,21 +76,22 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
      * Used by the RecyclerView to list the steps of the recipe
      */
     @Override
-    public void onBindViewHolder(StepsAdapter.StepViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull StepsAdapter.StepViewHolder holder, int position) {
         if (position < getItemCount()) {
             Step step = steps.get(position);
             String stepShortDescription = String.format(context.getString(R.string.display_step_id),
                     step.getStepId(), step.getStepShortDescription());
 
-            if (!Utils.isEmptyString(stepShortDescription)){
+            if (!Utils.isEmptyString(stepShortDescription)) {
                 holder.textViewStep.setText(stepShortDescription);
             }
 
             if (steps.get(position).getIsSelected()) {
-                holder.layoutStep.setBackgroundColor(holder.colourDefaultBackground);
+                holder.rlayoutStep.setBackgroundColor(holder.colourSelectedBackground);
+            } else {
+                holder.rlayoutStep.setBackgroundColor(holder.colourDefaultBackground);
             }
         }
-
     }
 
     @Override
@@ -106,7 +109,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
 
     public void setSelected(int pos) {
         int oldPos = sharedPreferences.getInt(Config.PREFERENCE_KEY_STEP_SELECTED, -1);
-        if ((oldPos > -1) && (oldPos < getItemCount())){
+        if ((oldPos > -1) && (oldPos < getItemCount())) {
             steps.get(oldPos).setSelected(false);
         }
 
@@ -116,17 +119,19 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
         notifyDataSetChanged();
     }
 
-    public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class StepViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.layout_step)
-        RelativeLayout layoutStep;
+        @BindView(R.id.rlayout_step)
+        RelativeLayout rlayoutStep;
 
-        @BindView(R.id.step_tv)
+        @BindView(R.id.textview_step)
         TextView textViewStep;
 
-        @BindColor(R.color.colorBackground) int colourDefaultBackground;
+        @BindColor(R.color.colorLightGrey)
+        int colourDefaultBackground;
 
-        @BindColor(R.color.colorListBackground) int colourSelectedBackground;
+        @BindColor(R.color.colorListBackground)
+        int colourSelectedBackground;
 
 
         public StepViewHolder(View itemView) {

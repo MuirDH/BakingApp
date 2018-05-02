@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view = "http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="0dp"
-    card_view:cardElevation="@dimen/cardview_elevation"
     android:layout_marginBottom="@dimen/activity_margin"
-    android:layout_marginEnd="@dimen/activity_margin">
+    android:layout_marginEnd="@dimen/activity_margin"
+    card_view:cardCornerRadius="0dp"
+    card_view:cardElevation="@dimen/cardview_elevation">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/activity_margin"
-        android:background="@color/colorListBackground">
+        android:background="@color/colorListBackground"
+        android:padding="@dimen/activity_margin">
 
         <ImageView
-            android:id="@+id/recipe_icon_iv"
-            android:src="@drawable/ic_pie"
+            android:id="@+id/imageview_recipe_icon"
+            style="@style/RecipeListIcon"
             android:contentDescription="@string/recipe_icon_placeholder"
-            style="@style/RecipeListIcon"/>
+            android:src="@drawable/ic_pie" />
 
         <TextView
-            android:id="@+id/recipe_name_tv"
-            tools:text="@string/recipe_name_placeholder"
-            style="@style/RecipeListText.RecipeName"/>
+            android:id="@+id/textview_recipe_name"
+            style="@style/RecipeListText.RecipeName"
+            tools:text="@string/recipe_name_placeholder" />
 
         <TextView
-            android:id="@+id/recipe_servings_tv"
-            tools:text="@string/recipe_servings_placeholder"
-            style="@style/RecipeListText.RecipeServings"/>
+            android:id="@+id/textview_recipe_servings"
+            style="@style/RecipeListText.RecipeServings"
+            tools:text="@string/recipe_servings_placeholder" />
 
     </RelativeLayout>
 

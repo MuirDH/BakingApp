@@ -76,16 +76,16 @@ public class RecipeStepDetailFragment extends Fragment implements Player.EventLi
     private long playerPosition;
 
     //Butterknife View binding
-    @BindView(R.id.step_description_tv)
+    @BindView(R.id.textview_step_description)
     TextView textViewStepDescription;
 
-    @BindView(R.id.player_rl)
+    @BindView(R.id.rlayout_player)
     RelativeLayout relativeLayoutPlayer;
 
     @BindView(R.id.playerview_recipe_video)
     SimpleExoPlayerView exoPlayerView;
 
-    @BindView(R.id.no_media_iv)
+    @BindView(R.id.imageview_no_media)
     ImageView imageViewNoMedia;
 
     //Butterknive Resource binding

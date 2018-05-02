@@ -2,14 +2,13 @@
 
 <!-- This fragment displays recipe video and step details -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llayout_step_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/step_detail_layout"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -18,34 +17,34 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/step_description_tv"
-            tools:text="@string/step_placeholder"
+            android:id="@+id/textview_step_description"
             style="@style/StepDescriptionTextView"
+            android:layout_marginTop="0dp"
             android:paddingTop="0dp"
-            android:layout_marginTop="0dp"/>
+            tools:text="@string/step_placeholder" />
 
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rlayout_player"
         android:layout_width="0dp"
         android:layout_height="@dimen/media_player_height"
+        android:layout_marginTop="@dimen/activity_margin"
         android:layout_weight="1"
         android:background="@color/colorLightGrey"
-        android:padding="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/activity_margin"
-        android:id="@+id/player_rl">
+        android:padding="@dimen/activity_margin">
 
         <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:id="@+id/playerview_recipe_video"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/playerview_recipe_video"
-            android:background="@color/colorTextPrimary"/>
+            android:background="@color/colorTextPrimary" />
 
         <ImageView
-            android:id="@+id/no_media_iv"
-            android:src="@drawable/logo"
+            android:id="@+id/imageview_no_media"
+            style="@style/StepNoMediaImageView"
             android:contentDescription="@string/no_media_placeholder"
-            style="@style/StepNoMediaImageView"/>
+            android:src="@drawable/logo" />
 
     </RelativeLayout>
 

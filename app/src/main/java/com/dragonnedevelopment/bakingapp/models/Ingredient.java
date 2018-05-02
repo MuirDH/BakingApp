@@ -7,19 +7,22 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * BakingApp Created by Muir on 30/04/2018.
- *
+ * <p>
  * A {@link Ingredient} object which contains ingredients related to a single Recipe
  */
-public class Ingredient implements Parcelable{
+public class Ingredient implements Parcelable {
 
     /**
      * {@link Ingredient} attributes
      * Each attribute has a corresponding @SerializedName which is needed for GSON to map the JSON
      * keys with the attributes of the {@link Ingredient} object.
      */
-    @SerializedName("quantity") private Double ingredientQuantity;
-    @SerializedName("measure") private String ingredientMeasure;
-    @SerializedName("ingredient") private String ingredient;
+    @SerializedName("quantity")
+    private Double ingredientQuantity;
+    @SerializedName("measure")
+    private String ingredientMeasure;
+    @SerializedName("ingredient")
+    private String ingredient;
 
     /**
      * Empty constructor
@@ -57,6 +60,7 @@ public class Ingredient implements Parcelable{
     /**
      * default constructor.
      * constructs a new {@link Ingredient} object
+     *
      * @param parcel which contains the information the ingredient object is made up of.
      */
     public Ingredient(Parcel parcel) {
@@ -86,14 +90,14 @@ public class Ingredient implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         if (ingredientQuantity == null) {
             dest.writeByte((byte) (0x00));
-        }else {
+        } else {
             dest.writeByte((byte) (0x01));
             dest.writeDouble(ingredientQuantity);
         }
 
-        if (ingredientMeasure == null){
+        if (ingredientMeasure == null) {
             dest.writeByte((byte) (0x00));
-        }else {
+        } else {
             dest.writeByte((byte) (0x01));
             dest.writeString(ingredientMeasure);
         }

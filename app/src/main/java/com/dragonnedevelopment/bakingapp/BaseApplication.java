@@ -12,7 +12,6 @@ import timber.log.Timber;
  */
 public class BaseApplication extends Application {
 
-    private static boolean isActivityVisible;
     private static IntentFilter intentFilter;
     private static ConnectivityReceiver receiver;
     private static BaseApplication applicationInstance;

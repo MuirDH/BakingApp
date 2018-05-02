@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorBackground">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_recipes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recipes_rv"
-        android:paddingTop="@dimen/activity_margin"
-        android:paddingStart="@dimen/activity_margin"
+        android:paddingBottom="@dimen/activity_margin"
         android:paddingEnd="@dimen/activity_margin"
-        android:paddingBottom="@dimen/activity_margin"/>
+        android:paddingStart="@dimen/activity_margin"
+        android:paddingTop="@dimen/activity_margin" />
 
     <!-- empty view for when the list does not contain any items -->
     <TextView
-        android:id="@+id/empty_list_tv"
+        android:id="@+id/textview_empty_list"
         style="@style/EmptyListTextView"
-        tools:text="@string/app_name"/>
+        tools:text="@string/app_name" />
 
     <!-- Progress bar shown before first load -->
     <ProgressBar
         android:id="@+id/progress_bar"
-        style="@style/ProgressBar"/>
+        style="@style/ProgressBar" />
 
 </RelativeLayout>

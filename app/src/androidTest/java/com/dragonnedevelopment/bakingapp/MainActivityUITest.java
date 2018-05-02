@@ -55,7 +55,7 @@ public class MainActivityUITest {
     @Test
     public void testRecipeNameAtPosition(){
         //perform scroll action on Recipe RecyclerView list
-        onView(withId(R.id.recipes_rv))
+        onView(withId(R.id.recyclerview_recipes))
                 .perform(RecyclerViewActions
                 .scrollToPosition(RECIPE_LIST_SCROLL_POSITION));
 
@@ -74,16 +74,16 @@ public class MainActivityUITest {
     @Test
     public void testClickRecipeAtPosition() throws Exception{
         // perform a click action on the Recipe RecyclerView list
-        onView(withId(R.id.recipes_rv))
+        onView(withId(R.id.recyclerview_recipes))
                 .perform(RecyclerViewActions
                 .actionOnItemAtPosition(RECIPE_LIST_SCROLL_POSITION, click()));
 
         // check if the ingredients TextView is displayed
-        onView(withId(R.id.ingredients_tv))
+        onView(withId(R.id.textview_ingredients))
                 .check(matches(isDisplayed()));
 
         // perform a scroll action on the Steps RecyclerView list
-        onView(withId(R.id.steps_rv))
+        onView(withId(R.id.recyclerview_steps))
                 .perform(RecyclerViewActions
                 .scrollToPosition(STEPS_WITH_MEDIA));
 
@@ -93,20 +93,20 @@ public class MainActivityUITest {
                 .check(matches(isDisplayed()));
 
         // perform a click action on the steps list (ID = 0)
-        onView(withId(R.id.steps_rv))
+        onView(withId(R.id.recyclerview_steps))
                 .perform(RecyclerViewActions
                 .actionOnItemAtPosition(STEPS_WITH_MEDIA, click()));
 
         // check if all the views are displayed as expected in the StepsActivity (after the step
         // item is clicked)
-        onView(withId(R.id.previous_btn)).check(matches(isDisplayed()));
-        onView(withId(R.id.next_btn)).check(matches(isDisplayed()));
-        onView(withId(R.id.step_description_tv)).check(matches(isDisplayed()));
-        onView(withId(R.id.step_number_tv)).check(matches(isDisplayed()));
-        onView(withId(R.id.step_description_tv)).check(matches(withText(STEP_DESCRIPTION)));
-        onView(withId(R.id.step_number_tv)).check(matches(withText(STEP_NUM_0)));
+        onView(withId(R.id.button_previous)).check(matches(isDisplayed()));
+        onView(withId(R.id.button_next)).check(matches(isDisplayed()));
+        onView(withId(R.id.textview_step_description)).check(matches(isDisplayed()));
+        onView(withId(R.id.textview_step_number)).check(matches(isDisplayed()));
+        onView(withId(R.id.textview_step_description)).check(matches(withText(STEP_DESCRIPTION)));
+        onView(withId(R.id.textview_step_number)).check(matches(withText(STEP_NUM_0)));
         onView(withId(R.id.playerview_recipe_video)).check(matches(isDisplayed()));
-        onView(withId(R.id.no_media_iv)).check(matches(not(isDisplayed())));
+        onView(withId(R.id.imageview_no_media)).check(matches(not(isDisplayed())));
     }
 
     /**
@@ -119,21 +119,21 @@ public class MainActivityUITest {
     @Test
     public void testClickStepAtPosition() throws Exception {
         // perform click action on the Recipe RecyclerView list
-        onView(withId(R.id.recipes_rv))
+        onView(withId(R.id.recyclerview_recipes))
                 .perform(RecyclerViewActions
                 .actionOnItemAtPosition(RECIPE_LIST_SCROLL_POSITION, click()));
 
         // perform a scroll action on the Steps RecyclerView list
-        onView(withId(R.id.steps_rv))
+        onView(withId(R.id.recyclerview_steps))
                 .perform(RecyclerViewActions
                 .scrollToPosition(STEPS_WITHOUT_MEDIA));
-        onView(withId(R.id.steps_rv))
+        onView(withId(R.id.recyclerview_steps))
                 .perform(RecyclerViewActions
                 .actionOnItemAtPosition(STEPS_WITHOUT_MEDIA, click()));
 
-        onView(withId(R.id.step_number_tv))
+        onView(withId(R.id.textview_step_number))
                 .check(matches(withText(STEP_NUM_1)));
-        onView(withId(R.id.no_media_iv))
+        onView(withId(R.id.imageview_no_media))
                 .check(matches(isDisplayed()));
     }
 

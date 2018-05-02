@@ -59,7 +59,7 @@ public class DetailActivityIntentTest {
     @Test
     public void launchDetailActivityIntent() {
 
-        onView(withId(R.id.recipes_rv))
+        onView(withId(R.id.recyclerview_recipes))
                 .perform(RecyclerViewActions.actionOnItem(
                         hasDescendant(withText(RECIPE_NAME)), click()));
 
@@ -68,7 +68,7 @@ public class DetailActivityIntentTest {
 
         if (isTwoPane) {
             // Check if video player container is present
-            onView(withId(R.id.player_rl)).check(matches(isDisplayed()));
+            onView(withId(R.id.rlayout_player)).check(matches(isDisplayed()));
         } else {
             // Check if DetailActivity opens
             intended(hasComponent(DetailActivity.class.getName()));

@@ -16,7 +16,7 @@ import com.dragonnedevelopment.bakingapp.utils.Config;
  *
  * Implementation of App Widget functionality
  */
-class BakingWidgetProvider extends AppWidgetProvider {
+public class BakingWidgetProvider extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, String[] recipe){
 
