@@ -55,8 +55,8 @@ public class Recipe implements Parcelable {
         return recipeId;
     }
 
-    public Integer getRecipeServings() {
-        return recipeServings;
+    public String getRecipeName() {
+        return recipeName;
     }
 
     public List<Ingredient> getRecipeIngredients() {
@@ -67,13 +67,15 @@ public class Recipe implements Parcelable {
         return recipeSteps;
     }
 
+    public Integer getRecipeServings() {
+        return recipeServings;
+    }
+
     public String getRecipeImage() {
         return recipeImage;
     }
 
-    public String getRecipeName() {
-        return recipeName;
-    }
+
 
     // Setter methods
 
@@ -81,24 +83,24 @@ public class Recipe implements Parcelable {
         this.recipeId = recipeId;
     }
 
-    public void setRecipeImage(String recipeImage) {
-        this.recipeImage = recipeImage;
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
     }
 
     public void setRecipeIngredients(List<Ingredient> recipeIngredients) {
         this.recipeIngredients = recipeIngredients;
     }
 
-    public void setRecipeName(String recipeName) {
-        this.recipeName = recipeName;
+    public void setRecipeSteps(List<Step> recipeSteps) {
+        this.recipeSteps = recipeSteps;
     }
 
     public void setRecipeServings(Integer recipeServings) {
         this.recipeServings = recipeServings;
     }
 
-    public void setRecipeSteps(List<Step> recipeSteps) {
-        this.recipeSteps = recipeSteps;
+    public void setRecipeImage(String recipeImage) {
+        this.recipeImage = recipeImage;
     }
 
     /**

@@ -43,20 +43,20 @@ public class Step implements Parcelable {
         return stepId;
     }
 
-    public String getStepDescription() {
-        return stepDescription;
-    }
-
     public String getStepShortDescription() {
         return stepShortDescription;
     }
 
-    public String getStepThumbnailUrl() {
-        return stepThumbnailUrl;
+    public String getStepDescription() {
+        return stepDescription;
     }
 
     public String getStepVideoUrl() {
         return stepVideoUrl;
+    }
+
+    public String getStepThumbnailUrl() {
+        return stepThumbnailUrl;
     }
 
     public boolean getIsSelected() {
@@ -64,14 +64,6 @@ public class Step implements Parcelable {
     }
 
     //Setters
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
-
-    public void setStepDescription(String stepDescription) {
-        this.stepDescription = stepDescription;
-    }
-
     public void setStepId(Integer stepId) {
         this.stepId = stepId;
     }
@@ -80,12 +72,20 @@ public class Step implements Parcelable {
         this.stepShortDescription = stepShortDescription;
     }
 
-    public void setStepThumbnailUrl(String stepThumbnailUrl) {
-        this.stepThumbnailUrl = stepThumbnailUrl;
+    public void setStepDescription(String stepDescription) {
+        this.stepDescription = stepDescription;
     }
 
     public void setStepVideoUrl(String stepVideoUrl) {
         this.stepVideoUrl = stepVideoUrl;
+    }
+
+    public void setStepThumbnailUrl(String stepThumbnailUrl) {
+        this.stepThumbnailUrl = stepThumbnailUrl;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
     /**

@@ -36,25 +36,24 @@ public class Ingredient implements Parcelable {
         return ingredientQuantity;
     }
 
-    public String getIngredient() {
-        return ingredient;
-    }
-
     public String getIngredientMeasure() {
         return ingredientMeasure;
     }
 
+    public String getIngredient() {
+        return ingredient;
+    }
+
     // Setters
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredientQuantity(Double ingredientQuantity) {
+        this.ingredientQuantity = ingredientQuantity;
     }
 
     public void setIngredientMeasure(String ingredientMeasure) {
         this.ingredientMeasure = ingredientMeasure;
     }
-
-    public void setIngredientQuantity(Double ingredientQuantity) {
-        this.ingredientQuantity = ingredientQuantity;
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
     }
 
     /**
